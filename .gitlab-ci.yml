@@ -1,5 +1,5 @@
 image:
-    name: amazon/aws-cli:2.7.1
+    name: amazon/aws-cli:2.7.2
     entrypoint: [""]
 
 stages:

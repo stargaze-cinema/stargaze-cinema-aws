@@ -22,7 +22,7 @@ services:
         ports:
             - 8000:80
         volumes:
-            - .env.backend:/var/www/stargaze/.env
+            - .env.backend:/var/www/stargaze/.env:ro
         networks:
             - stargaze-network
         depends_on:
@@ -45,6 +45,24 @@ services:
             start_period: 80s
         volumes:
             - pg-storage:/var/lib/postgresql/data:rw
+        networks:
+            - stargaze-network
+
+    rabbitmq:
+        container_name: rabbitmq
+        image: rabbitmq:3.10.2-alpine
+        ports:
+            - 5672:5672
+        restart: always
+        healthcheck:
+            test: "rabbitmq-diagnostics -q ping"
+            interval: 30s
+            timeout: 60s
+            retries: 5
+            start_period: 80s
+        volumes:
+            - rabbitmq-storage:/var/lib/rabbitmq:rw
+            - ./rabbitmq.conf:/etc/rabbitmq/conf.d/10-defaults.conf:ro
         networks:
             - stargaze-network
 
