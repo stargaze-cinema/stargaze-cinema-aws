@@ -70,3 +70,6 @@ volumes:
     pg-storage:
         name: pg-storage
         driver: local
+    rabbitmq-storage:
+        name: rabbitmq-storage
+        driver: local
