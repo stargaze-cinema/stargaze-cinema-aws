@@ -1,4 +1,5 @@
 *
 !.env
 !.env.*
+!rabbitmq.conf
 !docker-compose.yml
